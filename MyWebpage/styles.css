@@ -1,0 +1,14 @@
+/* Grundlegende Formatierung für die Seite */
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-top: 100px;
+}
+
+/* Gestaltung der Überschrift */
+h1 {
+  color: #333;
+  font-size: 48px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
