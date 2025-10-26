@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  webui:
+    image: hmi:latest
+    container_name: webui
+    network_mode: "host"
+    #ports:
+    #  - "8080:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+      start_period: 5s
+
+  worker:
+    image: chargemanager:latest
+    container_name: chargemanager
+    network_mode: "host"
+    depends_on:
+      webui:
+        condition: service_healthy
+    command: sh -c "echo 'Starte Worker nach WebUI...' && sleep 5 && echo 'Worker läuft!'"
