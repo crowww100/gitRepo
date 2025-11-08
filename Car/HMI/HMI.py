@@ -76,9 +76,17 @@ def index():
              #HMI_client.connect(hostname, broker_port, 60)
              #HMI_client.publish(topic1, message)
              #HMI_client.disconnect(hostname)
+          elif res=="btnradio2":
+             Mode=2
+             message=res
+             HMI_client.connect(hostname, broker_port, 60)
+             HMI_client.publish(topic1, message)
+             #HMI_client.connect(hostname, broker_port, 60)
+             #HMI_client.publish(topic1, message)
+             #HMI_client.disconnect(hostname)  
 
           else:
-             Mode=2
+             Mode=3
              message=res
              HMI_client.connect(hostname, broker_port, 60)
              HMI_client.publish(topic1, message)

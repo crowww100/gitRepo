@@ -75,10 +75,17 @@ left: 115px;
 .SubmitChargeMode{
 position: absolute;
 top: 5px;
-left: 340px;
+left: 500px;
 
 }
 
+/*.StopChargeMode{
+position: absolute;
+top: 5px;
+left: 540px;
+
+}
+*/
 
 .Reset{
 position: absolute;

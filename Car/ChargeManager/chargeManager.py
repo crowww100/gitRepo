@@ -99,6 +99,8 @@ def on_message(client, userdata, message):
        chargeMode=0
     if data =="btnradio2":
        chargeMode=1
+    if data =="btnradio6":
+       chargeMode=2
     if data =="btnradio3":
        manualSpeed=0
     if data =="btnradio4":
@@ -572,7 +574,7 @@ def charge_ctrl():
              requests.get(BASE_URL_GOe_stop)
              chargingActive_old = chargingActive
 
-       else: #manual mode
+       if chargeMode==1: #manual mode
           if manualSpeed == 0: #2kW --> 1 phase
              chargeAmpReq=9
              requests.get(BASE_URL_GOe_AMP+str(chargeAmpReq))
@@ -591,6 +593,8 @@ def charge_ctrl():
           if chargingActive==0:
              requests.get(BASE_URL_GOe_start) #start charging
              chargingActive = 1
+       else:
+          requests.get(BASE_URL_GOe_stop)
 
 
 

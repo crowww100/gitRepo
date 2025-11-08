@@ -21,6 +21,7 @@
 
           <form class="Reset" method="POST">
             <button type="submit" class="btn btn-outline-danger"name="button" value="Reset">Reset</button>
+            
           </form>
           <div class="LoadBar">
             <div class="progress" role="progressbar" aria-label="Success striped example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
@@ -43,7 +44,10 @@
             <label class="btn btn-outline-primary" for="btnradio1">Auto Mode</label>
 
             <input type="radio" class="btn-check" name="btnradio1" id="btnradio2" value="btnradio2" autocomplete="off" {{"checked" if Mode==2 }}>
-            <label class="btn btn-outline-primary" for="btnradio2">Manual Mode......................</label>            
+            <label class="btn btn-outline-primary" for="btnradio2">Manual Mode......................</label>   
+            
+            <input type="radio" class="btn-check" name="btnradio1" id="btnradio6" value="btnradio6" autocomplete="off" {{"checked" if Mode==3 }}>
+            <label class="btn btn-outline-primary" for="btnradio6">Stop......................</label>   
           </div>
 
           <div class="btn-group2" role="group" aria-label="Basic radio toggle button group">
