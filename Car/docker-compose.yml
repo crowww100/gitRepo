@@ -3,7 +3,14 @@ version: "3.9"
 services:
   webui:
     image: hmi:latest
-    network_mode: "host"
+    expose:
+      - "8000"
+    depends_on:
+      - mosquitto
+    environment:
+      - MQTT_HOST=mosquitto
+    networks:
+      - backend
 
   delay:
     image: alpine:latest
@@ -14,6 +21,40 @@ services:
 
   worker:
     image: chargemanager:latest
-    network_mode: "host"
     depends_on:
-      - delay
+      - mosquitto
+    environment:
+      - MQTT_HOST=mosquitto
+      - MQTT_PORT=1883
+    networks:
+      - backend
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - mosquitto_data:/mosquitto/data
+    networks:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - webui
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - backend
+
+volumes:
+  mosquitto_data:
+
+networks:
+  backend:
+    driver: bridge

@@ -1,9 +1,11 @@
 from flask import Flask, render_template, Response, request, redirect, url_for
 import requests
 import paho.mqtt.client as mqtt
+import os
 
 #Variables needed for MQTT-interface##########################################################################################################
-hostname = "localhost"
+#hostname = "localhost"
+MQTT_HOST = os.getenv("MQTT_HOST", "mosquitto")
 broker_port = 1883
 topic1 = "ChargingManager"
 topic2 = "ChargeData"
@@ -40,7 +42,7 @@ app = Flask(__name__,static_url_path='/static' )
 #start MQTT-client############################################################################################################################
 HMI_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1,"HMI_client")
 #HMI_client.on_message=on_message #attach function to callback
-HMI_client.connect(hostname, broker_port, 60)
+HMI_client.connect(MQTT_HOST, broker_port, 60)
 #HMI_client.subscribe(topic2)
 #HMI_client.loop_start()
 ##############################################################################################################################################

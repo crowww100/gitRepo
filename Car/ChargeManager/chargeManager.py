@@ -31,8 +31,8 @@ BASE_URL_GOe_Phase='https://244909.api.v3.go-e.io/api/set?token=Pk2P0PjZOUAsUiL5
 
 
 # MQTT-parameter#######################################################################
-hostname = "localhost"
-broker_port = 1883
+hostname = os.getenv("MQTT_HOST", "mosquitto")
+broker_port = int(os.getenv("MQTT_PORT", 1883))
 topic = "ChargingManager"
 topic2 ="ChargeData"
 ########################################################################################

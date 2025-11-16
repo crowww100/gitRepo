@@ -19,6 +19,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # --- Flask App starten ---
-EXPOSE 5001
+#EXPOSE 5001
 
-CMD ["python", "HMI.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "HMI:app"]
